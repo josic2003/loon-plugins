@@ -1,0 +1,12 @@
+#!name=一点万象签到
+#!desc=一点万象 App 自动抓取签到参数并定时签到。先打开 App 进入签到页完成参数捕获，再由定时任务自动签到。
+#!author=怎么肥事
+#!homepage=https://github.com/ZenmoFeiShi/Qx
+#!date=2026-06-14
+
+[Script]
+http-request ^https?:\/\/app\.mixcapp\.com\/mixc\/gateway script-path=https://raw.githubusercontent.com/ZenmoFeiShi/Qx/refs/heads/main/mixc_signin.js, requires-body=true, timeout=30, tag=一点万象签到参数捕获
+cron "1 0 * * *" script-path=https://raw.githubusercontent.com/ZenmoFeiShi/Qx/refs/heads/main/mixc_signin.js, timeout=60, tag=一点万象签到
+
+[MITM]
+hostname = app.mixcapp.com
